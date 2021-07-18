@@ -44,13 +44,24 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     obscureText: true,
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(
+                    height: 50,
+                  ),
                   ElevatedButton(
                     onPressed: () {},
                     child: Text(
                       'Login',
                     ),
-
+                  ),
+                  SizedBox(height: 10,),
+                  Text("Don't have account ?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, 'sign_up');
+                    },
+                    child: Text(
+                      'Sign Up',
+                    ),
                   )
                 ],
               ),

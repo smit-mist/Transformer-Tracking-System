@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class SignInScreen extends StatefulWidget {
+class SignUpScreen extends StatefulWidget {
   @override
-  _SignInScreenState createState() => _SignInScreenState();
+  _SignUpScreenState createState() => _SignUpScreenState();
 }
 
-class _SignInScreenState extends State<SignInScreen> {
+class _SignUpScreenState extends State<SignUpScreen> {
   int ok = 0;
   @override
   Widget build(BuildContext context) {
@@ -76,9 +76,21 @@ class _SignInScreenState extends State<SignInScreen> {
                     height: 50,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+
+                    },
                     child: Text(
                       'Sign Up',
+                    ),
+                  ),
+                  SizedBox(height: 10,),
+                  Text("Already have account ?"),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.pushReplacementNamed(context, 'login');
+                    },
+                    child: Text(
+                      'Log In',
                     ),
                   )
                 ],
