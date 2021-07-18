@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:tts/login_screen.dart';
-import 'package:tts/sign_in_screen.dart';
+import 'package:tts/screens/login_screen.dart';
+import 'file:///C:/Users/smit3/AndroidStudioProjects/tts/lib/screens/sign_in_screen.dart';
 
 void main() {
   runApp(MyApp());
