@@ -33,7 +33,8 @@ dependencies:
   firebase_core: ^1.4.0
   pinput: ^1.2.0
   cloud_firestore: ^2.4.0
-  fluttertoast: ^8.0.7
+  fluttertoast: any
+  date_time_picker: "^2.1.0"
 
 dev_dependencies:
   flutter_test:

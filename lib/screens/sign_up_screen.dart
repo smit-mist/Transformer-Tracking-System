@@ -18,24 +18,26 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    TextEditingController _name = TextEditingController(),
-        email = TextEditingController(),
-        mobileNo = TextEditingController(),
-        password = TextEditingController(),
-        empID = TextEditingController(),
-        city = TextEditingController();
+    String name = "",
+        email = "",
+        mobileNo = "",
+        password = "",
+        empID = "",
+        city = "";
     void signMeUp(AppUser currentUser) async {
-      if (_key.currentState.validate()) {
+      if (true) {
         setState(() {
           isLoading = true;
         });
+        print(currentUser.email);
+        print(currentUser.password);
         final AppUser user =
             await _auth.signUp(currentUser.email, currentUser.password);
         if (user != null) {
           await database.addUser(currentUser);
           // SharedPreferences prefs = await SharedPreferences.getInstance();
           // prefs.setString('uid', user.uid);
-          Navigator.pushReplacementNamed(context, 'home');
+          Navigator.pushNamed(context, 'home');
         } else {
           setState(() {
             isLoading = false;
@@ -50,124 +52,155 @@ class _SignUpScreenState extends State<SignUpScreen> {
       }
     }
 
-    return SafeArea(
-      child: Scaffold(
-        body: Container(
-          padding: EdgeInsets.symmetric(horizontal: w * 0.1),
-          child: Center(
-            child: SingleChildScrollView(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  SizedBox(
-                    height: h * 0.1,
-                  ),
-                  Text(
-                    'SCIGVOY',
-                    style: TextStyle(fontSize: 30),
-                  ),
-                  SizedBox(
-                    height: 20,
-                  ),
-                  Text(
-                    'Sign Up',
-                    style: TextStyle(fontSize: 25),
-                  ),
-                  DropdownButtonFormField(
-                      onChanged: (newValue) {
-                        // do other stuff with _category
-                        setState(() => ok = newValue);
-                      },
-                      value: ok,
-                      items: [
-                        DropdownMenuItem(
-                          value: 0,
-                          child: Text('Manager'),
+    return isLoading
+        ? CircularProgressIndicator()
+        : SafeArea(
+            child: Scaffold(
+              body: Container(
+                padding: EdgeInsets.symmetric(horizontal: w * 0.1),
+                child: Center(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      //mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        SizedBox(
+                          height: h * 0.1,
                         ),
-                        DropdownMenuItem(
-                          value: 1,
-                          child: Text('Engineer'),
+                        Text(
+                          'SCIGVOY',
+                          style: TextStyle(fontSize: 30),
                         ),
-                      ]),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Full Name',
+                        SizedBox(
+                          height: 20,
+                        ),
+                        Text(
+                          'Sign Up',
+                          style: TextStyle(fontSize: 25),
+                        ),
+                        DropdownButtonFormField(
+                            onChanged: (newValue) {
+                              // do other stuff with _category
+                              setState(() => ok = newValue);
+                            },
+                            value: ok,
+                            items: [
+                              DropdownMenuItem(
+                                value: 0,
+                                child: Text('Manager'),
+                              ),
+                              DropdownMenuItem(
+                                value: 1,
+                                child: Text('Engineer'),
+                              ),
+                            ]),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Full Name',
+                          ),
+                          onChanged: (String delta) {
+                            setState(() {
+                              name = delta;
+                            });
+                          },
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                          ),
+                          onChanged: (String delta) {
+                            setState(() {
+                              email = delta;
+                            });
+                          },
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Mobile No.',
+                          ),
+                          onChanged: (String delta) {
+                            setState(() {
+                              mobileNo = delta;
+                            });
+                          },
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                          ),
+                          obscureText: true,
+                          onChanged: (String delta) {
+                            setState(() {
+                              password = delta;
+                            });
+                          },
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'Employee ID',
+                          ),
+                          onChanged: (String delta) {
+                            setState(() {
+                              empID = delta;
+                            });
+                          },
+                        ),
+                        TextField(
+                          decoration: InputDecoration(
+                            labelText: 'City',
+                          ),
+                          onChanged: (String delta) {
+                            setState(() {
+                              city = delta;
+                              print(city);
+                            });
+                          },
+                        ),
+                        SizedBox(
+                          height: 50,
+                        ),
+                        ElevatedButton(
+                          onPressed: () {
+                            String post = "Manager";
+                            if (ok == 1) {
+                              post = "Engineer";
+                            }
+                            AppUser currentUser = AppUser(
+                              name: name,
+                              email: email,
+                              mobileNo: mobileNo,
+                              city: city,
+                              empId: empID,
+                              password: password,
+                              post: post,
+                            );
+                            currentUser.printUser();
+                           // signMeUp(currentUser);
+                            //  Navigator.pushNamed(context, 'home');
+                            // Just Created User from info provided
+                          },
+                          child: Text(
+                            'Sign Up',
+                          ),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text("Already have account ?"),
+                        TextButton(
+                          onPressed: () {
+                            Navigator.pushReplacementNamed(context, 'login');
+                          },
+                          child: Text(
+                            'Log In',
+                          ),
+                        )
+                      ],
                     ),
-                    controller: _name,
                   ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Email',
-                    ),
-                    controller: email,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Mobile No.',
-                    ),
-                    controller: mobileNo,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Password',
-                    ),
-                    controller: password,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'Employee ID',
-                    ),
-                    controller: empID,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(
-                      labelText: 'City',
-                    ),
-                    controller: city,
-                  ),
-                  SizedBox(
-                    height: 50,
-                  ),
-                  ElevatedButton(
-                    onPressed: () {
-                      String post = "Manager";
-                      if (ok == 1) {
-                        post = "Engineer";
-                      }
-                      AppUser currentUser = AppUser(
-                        name: _name.text,
-                        email: email.text,
-                        mobileNo: mobileNo.text,
-                        city: city.text,
-                        empId: empID.text,
-                        password: password.text,
-                        post: post,
-                      );
-                      // Just Created User from info provided
-                    },
-                    child: Text(
-                      'Sign Up',
-                    ),
-                  ),
-                  SizedBox(
-                    height: 10,
-                  ),
-                  Text("Already have account ?"),
-                  TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, 'login');
-                    },
-                    child: Text(
-                      'Log In',
-                    ),
-                  )
-                ],
+                ),
               ),
             ),
-          ),
-        ),
-      ),
-    );
+          );
   }
 }
