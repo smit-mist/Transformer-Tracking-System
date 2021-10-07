@@ -28,68 +28,122 @@ class _TrScreenState extends State<TrScreen> {
                   ),
                   Text(
                     'Add Transformer',
-                    style: TextStyle(fontSize: 30),
+                    style: TextStyle(
+                      fontSize: 30,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 2,
+                      color: Colors.blue[700],
+                      fontFamily: 'NotoSerif',
+                    ),
                   ),
                   SizedBox(
                     height: 20,
                   ),
 
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Transformer ID.',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Model Name',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Company',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Tested Quality',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Address',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'City',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'State',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Cost',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Winding',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Guarantee Period',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Oil Capacity.',
                     ),
                   ),
                   TextField(
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'NotoRegular',
+                    ),
                     decoration: InputDecoration(
                       labelText: 'Units of transformer.',
                     ),
@@ -108,7 +162,9 @@ class _TrScreenState extends State<TrScreen> {
                     onSaved: (val) => print(val),
                   ),
                   Row(
+
                     children: [
+
                       Text('Sealed      '),
                       Switch(
                         value: switchState,
@@ -128,6 +184,9 @@ class _TrScreenState extends State<TrScreen> {
                     onPressed: () {},
                     child: Text(
                       'Submit the data',
+                    ),
+                    style: ElevatedButton.styleFrom(
+                      minimumSize: Size(double.infinity, 40),
                     ),
                   ),
                   SizedBox(

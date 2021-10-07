@@ -13,7 +13,13 @@ class _HomeScreenState extends State<HomeScreen> {
     double w = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Home Page'),
+        title: Text(
+          'Home Page',
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: 'NotoRegular',
+          ),
+        ),
       ),
       body: TrScreen(),
       bottomNavigationBar: BottomAppBar(

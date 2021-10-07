@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:tts/logic/auth_logic.dart';
 import 'package:tts/models/user_model.dart';
+import 'package:animated_text_kit/animated_text_kit.dart';
 
 class SignUpScreen extends StatefulWidget {
   @override
@@ -67,16 +68,36 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         SizedBox(
                           height: h * 0.1,
                         ),
-                        Text(
-                          'SCIGVOY',
-                          style: TextStyle(fontSize: 30),
+                        AnimatedTextKit(
+                          animatedTexts: [
+                            TyperAnimatedText(
+                              'SCIGVOY',
+                              textStyle: const TextStyle(
+                                fontSize: 50,
+                                fontWeight: FontWeight.bold,
+                                letterSpacing: 2,
+                                color: Colors.blue,
+                                fontFamily: 'NotoSerif',
+                              ),
+                              speed: const Duration(milliseconds: 200),
+                            ),
+                          ],
+                          totalRepeatCount: 1,
+                          pause: const Duration(milliseconds: 1000),
+                          displayFullTextOnTap: true,
+                          stopPauseOnTap: true,
                         ),
                         SizedBox(
                           height: 20,
                         ),
                         Text(
                           'Sign Up',
-                          style: TextStyle(fontSize: 25),
+                          style: TextStyle(
+                            fontSize: 25,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 2,
+                            fontFamily: 'NotoRegular',
+                          ),
                         ),
                         DropdownButtonFormField(
                             onChanged: (newValue) {
@@ -87,14 +108,32 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             items: [
                               DropdownMenuItem(
                                 value: 0,
-                                child: Text('Manager'),
+                                child: Text(
+                                  'Manager',
+                                  style: TextStyle(
+                                    color: Colors.grey[800],
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'NotoRegular',
+                                  ),
+                                ),
                               ),
                               DropdownMenuItem(
                                 value: 1,
-                                child: Text('Engineer'),
+                                child: Text(
+                                  'Engineer',
+                                  style: TextStyle(
+                                    color: Colors.grey[800],
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'NotoRegular',
+                                  ),
+                                ),
                               ),
                             ]),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'Full Name',
                           ),
@@ -105,6 +144,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'Email',
                           ),
@@ -115,6 +158,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'Mobile No.',
                           ),
@@ -125,6 +172,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'Password',
                           ),
@@ -136,6 +187,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'Employee ID',
                           ),
@@ -146,6 +201,10 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         TextField(
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'NotoRegular',
+                          ),
                           decoration: InputDecoration(
                             labelText: 'City',
                           ),
@@ -157,7 +216,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                           },
                         ),
                         SizedBox(
-                          height: 50,
+                          height: 30,
                         ),
                         ElevatedButton(
                           onPressed: () {
@@ -175,12 +234,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               post: post,
                             );
                             currentUser.printUser();
-                           // signMeUp(currentUser);
-                            //  Navigator.pushNamed(context, 'home');
+                            signMeUp(currentUser);
+                            Navigator.pushNamed(context, 'home');
                             // Just Created User from info provided
                           },
                           child: Text(
                             'Sign Up',
+                          ),
+                          style: ElevatedButton.styleFrom(
+                            minimumSize: Size(double.infinity, 40),
                           ),
                         ),
                         SizedBox(
