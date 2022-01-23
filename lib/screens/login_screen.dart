@@ -1,15 +1,51 @@
 import 'package:flutter/material.dart';
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:tts/logic/auth_logic.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class LoginScreen extends StatefulWidget {
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
-
+String email='' , password='';
 class _LoginScreenState extends State<LoginScreen> {
+  Database database = Database();
+  GlobalKey<FormState> _key = GlobalKey<FormState>();
+  bool isLoading = false, isVisible = false, isAccepted = false;
+  final _auth = AuthService();
+  int ok = 0;
   @override
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
+
+    void signMeIn(String emai, String pass) async {
+      if (true) {
+        setState(() {
+          isLoading = true;
+        });
+        print(emai);
+        print(pass);
+        final  user =
+        await _auth.signIn(emai, pass);
+        if (user != null) {
+          //await database.addUser(currentUser);
+          // SharedPreferences prefs = await SharedPreferences.getInstance();
+          // prefs.setString('uid', user.uid);
+          Navigator.pushNamed(context, 'home');
+        } else {
+          setState(() {
+            isLoading = false;
+          });
+          Fluttertoast.showToast(
+            msg: 'Something went wrong',
+            fontSize: 16.0,
+            gravity: ToastGravity.BOTTOM,
+            toastLength: Toast.LENGTH_LONG,
+          );
+        }
+      }
+    }
+
     return SafeArea(
       child: Scaffold(
         body: Container(
@@ -62,6 +98,11 @@ class _LoginScreenState extends State<LoginScreen> {
                     decoration: InputDecoration(
                       labelText: 'Email',
                     ),
+                    onChanged: (String delta){
+                      setState(() {
+                        email = delta;
+                      });
+                    },
                   ),
                   TextField(
                     style: TextStyle(
@@ -72,12 +113,19 @@ class _LoginScreenState extends State<LoginScreen> {
                       labelText: 'Password',
                     ),
                     obscureText: true,
+                    onChanged: (String delta){
+                      setState(() {
+                        password = delta;
+                      });
+                    },
                   ),
                   SizedBox(
                     height: 50,
                   ),
                   ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      signMeIn(email, password);
+                    },
                     child: Text(
                       'Login',
                     ),

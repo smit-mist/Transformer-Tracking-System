@@ -8,7 +8,12 @@ class SignUpScreen extends StatefulWidget {
   @override
   _SignUpScreenState createState() => _SignUpScreenState();
 }
-
+String name = "",
+    email = "",
+    mobileNo = "",
+    password = "",
+    empID = "",
+    city = "";
 class _SignUpScreenState extends State<SignUpScreen> {
   Database database = Database();
   GlobalKey<FormState> _key = GlobalKey<FormState>();
@@ -19,12 +24,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   Widget build(BuildContext context) {
     double w = MediaQuery.of(context).size.width;
     double h = MediaQuery.of(context).size.height;
-    String name = "",
-        email = "",
-        mobileNo = "",
-        password = "",
-        empID = "",
-        city = "";
+
     void signMeUp(AppUser currentUser) async {
       if (true) {
         setState(() {
